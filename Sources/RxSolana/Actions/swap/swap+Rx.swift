@@ -5,7 +5,7 @@ import Solana
 private let swapProgramId = "SwaPpA9LAaLfeLi3a68M4DjnLqgtticKg6CnyNwgAC8"
 extension Action {
     public func swap(
-        account: Account? = nil,
+        account: Account,
         pool: Pool? = nil,
         source: PublicKey,
         sourceMint: PublicKey,

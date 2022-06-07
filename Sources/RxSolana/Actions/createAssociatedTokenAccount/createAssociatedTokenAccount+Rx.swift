@@ -5,10 +5,11 @@ import Solana
 extension Action {
     public func getOrCreateAssociatedTokenAccount(
         for owner: PublicKey,
-        tokenMint: PublicKey
+        tokenMint: PublicKey,
+        payer: Account
     ) -> Single<(transactionId: TransactionID?, associatedTokenAddress: PublicKey)> {
         Single.create { emitter in
-            self.getOrCreateAssociatedTokenAccount(owner: owner, tokenMint: tokenMint) {
+            self.getOrCreateAssociatedTokenAccount(owner: owner, tokenMint: tokenMint, payer: payer) {
                 switch $0 {
                 case .success(let result):
                     emitter(.success(result))
@@ -23,7 +24,7 @@ extension Action {
     public func createAssociatedTokenAccount(
         for owner: PublicKey,
         tokenMint: PublicKey,
-        payer: Account? = nil
+        payer: Account
     ) -> Single<TransactionID> {
         Single.create { emitter in
             self.createAssociatedTokenAccount(for: owner, tokenMint: tokenMint, payer: payer) {

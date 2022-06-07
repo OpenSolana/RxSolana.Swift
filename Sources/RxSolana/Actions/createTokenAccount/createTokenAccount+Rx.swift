@@ -4,10 +4,11 @@ import Solana
 
 extension Action {
     public func createTokenAccount(
-        mintAddress: String
+        mintAddress: String,
+        payer: Account
     ) -> Single<(signature: String, newPubkey: String)> {
         Single.create { emitter in
-            self.createTokenAccount(mintAddress: mintAddress) {
+            self.createTokenAccount(mintAddress: mintAddress, payer: payer) {
                 switch $0 {
                 case .success(let transaction):
                     emitter(.success(transaction))
