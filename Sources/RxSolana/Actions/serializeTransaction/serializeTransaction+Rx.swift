@@ -10,10 +10,10 @@ extension Action {
         feePayer: PublicKey? = nil
     ) -> Single<String> {
         Single.create { emitter in
+
             self.serializeTransaction(instructions: instructions,
                                       recentBlockhash: recentBlockhash,
-                                      signers: signers,
-                                      feePayer: feePayer
+                                      signers: signers
             ) { result in
                 switch result {
                 case .success(let transaction):

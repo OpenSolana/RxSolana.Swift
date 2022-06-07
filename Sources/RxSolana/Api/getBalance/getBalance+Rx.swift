@@ -4,7 +4,7 @@ import Solana
 
 
 public extension Api {
-    func getBalance(account: String? = nil, commitment: Commitment? = nil) -> Single<UInt64> {
+    func getBalance(account: String, commitment: Commitment? = nil) -> Single<UInt64> {
         Single.create { emitter in
             self.getBalance(account: account, commitment: commitment) {
                 switch $0 {

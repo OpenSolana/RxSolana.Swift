@@ -5,17 +5,17 @@ import Solana
 extension Action {
     public func sendSPLTokens(
         mintAddress: String,
-        decimals: Decimals,
         from fromPublicKey: String,
         to destinationAddress: String,
-        amount: UInt64
+        amount: UInt64,
+        payer: Account
     ) -> Single<TransactionID> {
         Single.create { emitter in
             self.sendSPLTokens(mintAddress: mintAddress,
-                               decimals: decimals,
                                from: fromPublicKey,
                                to: destinationAddress,
-                               amount: amount
+                               amount: amount,
+                               payer: payer
             ) { result in
                 switch result {
                 case .success(let transaction):
